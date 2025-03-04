@@ -38,3 +38,7 @@ export function evaluerMain(main: string[]): string {
     return parseInt(value);
   }
   
+
+  export function comparerMains(main1: string[], main2: string[]): string {
+    return "";
+  }
