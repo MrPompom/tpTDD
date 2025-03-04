@@ -1,5 +1,21 @@
 export function evaluerMain(main: string[]): string {
 
+    if (main.length !== 5) {
+        throw new Error("Une main doit contenir exactement 5 cartes.");
+    }
+
+    const cardRegex = /^(10|[2-9TJQKA])[CTKP]$/;
+    const cartesUniques = new Set<string>();
+
+    for (const card of main) {
+        if (!cardRegex.test(card)) {
+            throw new Error(`Format de carte invalide : ${card}.`);
+        }
+        if (cartesUniques.has(card)) {
+            throw new Error("Une main ne peut pas contenir de cartes en double.");
+        }
+        cartesUniques.add(card);
+    }
     const value = main.map(carte => carte.slice(0, -1));
     const colors = main.map(carte => carte.slice(-1));
 
