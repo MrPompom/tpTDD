@@ -77,3 +77,25 @@ describe("Comparaison des mains de poker", () => {
   });
 });
 
+describe("Validation des entrées", () => {
+  it("erreur si une main contient moins de 5 cartes", () => {
+    const mainInvalide = ["2C", "5K", "9T", "JP"];
+    expect(() => evaluerMain(mainInvalide)).toThrow("Une main doit contenir exactement 5 cartes.");
+  });
+
+  it("erreur si une main contient plus de 5 cartes", () => {
+    const mainInvalide = ["2C", "5K", "9T", "JP", "KC", "AC"];
+    expect(() => evaluerMain(mainInvalide)).toThrow("Une main doit contenir exactement 5 cartes.");
+  });
+
+  it("erreur si une carte est mal formatée", () => {
+    const mainInvalide = ["2X", "5K", "9T", "JP", "KC"];
+    expect(() => evaluerMain(mainInvalide)).toThrow("Format de carte invalide : 2X.");
+  });
+
+  it("erreur si une carte est dupliquée", () => {
+    const mainInvalide = ["2C", "5K", "9T", "JP", "5K"];
+    expect(() => evaluerMain(mainInvalide)).toThrow("Une main ne peut pas contenir de cartes en double.");
+  });
+});
+
