@@ -40,5 +40,31 @@ export function evaluerMain(main: string[]): string {
   
 
   export function comparerMains(main1: string[], main2: string[]): string {
-    return "";
+    const classementCombinaisons = [
+        "Carte Haute",
+        "Paire",
+        "Double Paire",
+        "Brelan",
+        "Suite",
+        "Couleur",
+        "Full",
+        "Carré",
+        "Quinte Flush",
+        "Quinte Flush Royale"
+      ];
+    
+      const classement1 = classementCombinaisons.indexOf(evaluerMain(main1));
+      const classement2 = classementCombinaisons.indexOf(evaluerMain(main2));
+    
+      if (classement1 > classement2) return "Joueur 1";
+      if (classement1 < classement2) return "Joueur 2";
+      const valeurs1 = main1.map(carte => convertValue(carte.slice(0, -1))).sort((a, b) => b - a);
+      const valeurs2 = main2.map(carte => convertValue(carte.slice(0, -1))).sort((a, b) => b - a);
+    
+      for (let i = 0; i < valeurs1.length; i++) {
+        if (valeurs1[i] > valeurs2[i]) return "Joueur 1";
+        if (valeurs1[i] < valeurs2[i]) return "Joueur 2";
+      }
+    
+      return "Égalité";
   }
