@@ -58,12 +58,12 @@ export function evaluerMain(main: string[]): string {
     
       if (classement1 > classement2) return "Joueur 1";
       if (classement1 < classement2) return "Joueur 2";
-      const valeurs1 = main1.map(carte => convertValue(carte.slice(0, -1))).sort((a, b) => b - a);
-      const valeurs2 = main2.map(carte => convertValue(carte.slice(0, -1))).sort((a, b) => b - a);
+      const value1 = main1.map(card => convertValue(card.slice(0, -1))).sort((a, b) => b - a);
+      const value2 = main2.map(card => convertValue(card.slice(0, -1))).sort((a, b) => b - a);
     
-      for (let i = 0; i < valeurs1.length; i++) {
-        if (valeurs1[i] > valeurs2[i]) return "Joueur 1";
-        if (valeurs1[i] < valeurs2[i]) return "Joueur 2";
+      for (let i = 0; i < value1.length; i++) {
+        if (value1[i] > value2[i]) return "Joueur 1";
+        if (value1[i] < value2[i]) return "Joueur 2";
       }
     
       return "Égalité";
