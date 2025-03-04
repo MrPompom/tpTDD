@@ -6,3 +6,9 @@ describe("Évaluation des mains de poker", () => {
     expect(evaluerMain(main)).toBe("Carte Haute");
   });
 });
+
+it("reconnaît une paire", () => {
+  const main = ["2C", "2K", "9T", "JP", "KC"];
+  expect(evaluerMain(main)).toBe("Paire");
+});
+
